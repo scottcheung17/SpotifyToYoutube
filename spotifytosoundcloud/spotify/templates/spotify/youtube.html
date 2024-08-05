@@ -1,0 +1,16 @@
+{% extends 'spotify/base.html' %}
+{% block content %}
+{% if transferred %}
+    <div style="margin:20px 25px;">
+        Your transfer of {{ playlist_name }} was successful! Go check your Youtube
+        <a href="https://www.youtube.com/">account</a>.
+    </div>
+{% else %}
+    <div style="margin:20px 25px;">
+        The maximum amount of songs this app can transfer in a day is 100 songs due to Youtube API quotas.
+    </div>
+    <div>
+        <a href = {{auth_url}} class = 'transfer-button' style="float:left; margin-left: 30px;">Authorize your Youtube account</a>
+    </div>
+{% endif %}
+{% endblock content %}

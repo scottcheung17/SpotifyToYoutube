@@ -1,0 +1,9 @@
+{% extends 'spotify/base.html' %}
+{% block content %}
+<div style="margin:20px 25px;">
+    Unfortunately, we ran into an error while transferring this playlist.
+    {% autoescape off %}
+        {{ reason }}
+    {% endautoescape %}
+</div>
+{% endblock content %}

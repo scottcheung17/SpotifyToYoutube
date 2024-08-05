@@ -1,0 +1,58 @@
+{% extends 'spotify/base.html' %}
+{% block content %}
+<div class = "box" style="float: left;">
+    <h1 class="title">Playlist Transfer</h1>
+    Enter the name of the playlist you want to transfer:
+    <br>
+    <br>
+    <form method = 'post'>
+        {% csrf_token %}
+        {{form}}
+        <button type = "submit" class = "submit">Search</button>
+    </form>
+    
+    {% if status %}
+        <div style="color:#04AA6D">
+            {{status}}
+            <a href="{% url 'spotify:transfer' %}?id={{ id }}" class = "transfer-button">Start transfering this playlist</a>
+            <br>
+            <a href="{{ request.get_full_path }}" class = "reset-button">Minimize</a>
+        </div>
+        
+        <div class = "playlist">
+            {% if image %}
+                <div style="font-weight: bold">
+                    <img src={{ image.url }} alt = "playlist image">
+                    <span class = "playlist-title">
+                        {{ title }}
+                    </span>
+                </div>
+            {% endif %}
+            
+            <div class = "songs">
+                <ol>
+                    {% for song in songs %}
+                        <div class = "song">
+                            <li>
+                                {{ song.track.name }} - 
+                                {% for artist in song.track.artists %}
+                                    <span style="color:gray">{{ artist.name }}</span>
+                                {% endfor %}
+                                <br>
+                            </li>
+                        </div>
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+    {% elif invalid %}
+            {{ invalid }}
+    {% endif %}
+</div>
+
+<div class = "box" style="float: right;">
+    <h1 class ="title">Music Recommendations</h1>
+    Enter the song name you want to generate recommendations around:
+</div>
+
+{% endblock content %}

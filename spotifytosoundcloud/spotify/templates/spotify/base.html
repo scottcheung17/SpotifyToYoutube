@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'spotify/style.css' %}" rel="stylesheet" type="text/css"/>
+    <title>SpotifyToSoundcloud</title>
+</head>
+<body>
+    <div class = "navbar">
+        <a href="{% url 'spotify:home' %}">SpotifyToYoutube</a>
+    </div>
+    {% block content %}
+
+
+    {% endblock %}
+</body>
+</html>
